@@ -22,12 +22,12 @@ Build entries from the **net diff against the last released state** and the inte
 3. Filter with the table below.
 4. Fold polish into its feature. Tweaks to a feature that is itself unreleased (spacing, colors, copy, animation timing, bugs found while building it) go inside that feature's entry or nowhere. They never become new `Changed` or `Fixed` lines.
 5. Check existing entries first. If a later change reworks, renames, or corrects something already listed under `Unreleased`, edit that entry. Do not append a duplicate.
-6. Write each entry, then run the verification gate.
+6. Write each entry, then run the pre-save checklist.
 
 ## What gets an entry
 
 | Drop (no entry) | Keep (entry) |
-| --- | --- |
+| :--- | :--- |
 | Refactors, helper extraction, renames, file moves | A behavior a user or developer can observe |
 | Type fixes, lint fixes, formatting, comment edits | A new or removed command, flag, page, script, or setting |
 | Build and dev-server internals | A changed default or limit |
@@ -57,7 +57,7 @@ Good: - The profile view switches between avatars when hovered.
 ## Failure modes
 
 | Symptom | Cause | Fix |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | Entry reads like a commit subject | Wrote per commit | Re-derive from the net diff and state the visible effect |
 | Several lines for one feature | Logged each tweak as it landed | Merge into one entry for the final form |
 | `Changed` or `Fixed` lines for an unreleased feature | Treated unreleased polish as a change | Fold into the feature's `Added` entry |
@@ -65,10 +65,10 @@ Good: - The profile view switches between avatars when hovered.
 | Refactor or type fix appears | Completeness instinct | Delete it; listing everything makes the changelog less trustworthy |
 | "Various improvements" | No concrete change identified | Name the observable change or delete the entry |
 
-## Verification gate
+## Pre-save checklist
 
-1. Every entry traces to an observable difference in the net diff, and no sentence describes something the code does not do.
-2. No entry duplicates or contradicts an existing one; reworked items were edited in place.
-3. No entry would survive if the intermediate commits were squashed.
-4. Nothing from the Drop column is present.
-5. Prose is plain: no filler, no invented certainty, nothing upgraded from "may" to "does".
+1. Every entry traces to an observable difference in the net diff, explicitly naming the concrete change.
+2. No sentence describes phantom or unverified features; every statement reflects an actual observable capability.
+3. If a feature was reworked, its entry is edited in place on the original record to prevent duplicate entries.
+4. If intermediate commits were squashed, all transitional or intermediate entries that no longer match the final behavior have been pruned.
+5. Phrasing is plain and direct, free of redundant descriptions or empty praise ("improved", "smoother").
